@@ -92,7 +92,7 @@ const EventsWidget = () => {
       <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-lg border border-slate-100 dark:border-slate-800 p-6 transition-colors duration-300">
         <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
           <span className="bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 p-1 rounded-md">📅</span>
-          Upcoming Events
+          Upcoming Webinars, Workshops, Trainings
         </h3>
         <div className="space-y-4">
           {EVENTS.slice(0, 3).map((event, index) => (
