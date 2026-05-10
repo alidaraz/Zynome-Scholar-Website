@@ -140,13 +140,18 @@ const App: React.FC = () => {
       localStorage.setItem(`zynome_history_${user.email}`, JSON.stringify(newHistory));
     }
 
-    try { 
-      const results = await searchScholarships(userProfile); 
-      setScholarships(results); 
-    } 
-    catch (err) { console.error("Error"); } 
-    finally { setIsLoading(false); }
-  };
+    // Inside App.tsx
+  try { 
+    const results = await searchScholarships(userProfile); 
+    setScholarships(results); 
+  } 
+  catch (err: any) { 
+    console.error("API Error:", err); 
+    alert("Search Failed: " + err.message); // <--- THIS WILL POP UP AN ERROR MESSAGE
+  } 
+  finally { 
+    setIsLoading(false); 
+  }
 
   // Render logic based on view state
   const renderContent = () => {
