@@ -1,11 +1,15 @@
 import { GoogleGenAI } from "@google/genai";
 import { UserProfile, Scholarship } from "../types";
 
-// The API key must be obtained exclusively from the environment variable process.env.API_KEY
-// Assuming process.env.API_KEY is available in the execution context.
-const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY });
-
 export const searchScholarships = async (profile: UserProfile): Promise<Scholarship[]> => {
+  // Move the initialization INSIDE the function
+  const apiKey = process.env.API_KEY;
+  if (!apiKey) {
+    throw new Error("API Key is missing. Please check your Vercel Environment Variables.");
+  }
+  
+  const ai = new GoogleGenAI({ apiKey });
+
   const { origin, target, targetUniversity, level, field, maxFee, englishStatus, englishScore } = profile;
   
   let englishInstruction = "";
