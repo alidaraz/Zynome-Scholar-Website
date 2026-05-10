@@ -3,9 +3,10 @@ import { UserProfile, Scholarship } from "../types";
 
 export const searchScholarships = async (profile: UserProfile): Promise<Scholarship[]> => {
   // Move the initialization INSIDE the function
-  const apiKey = process.env.API_KEY;
+  // NEW CODE:
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
   if (!apiKey) {
-    throw new Error("API Key is missing. Please check your Vercel Environment Variables.");
+    throw new Error("API Key is missing. Make sure VITE_GEMINI_API_KEY is set in Vercel.");
   }
   
   const ai = new GoogleGenAI({ apiKey });
