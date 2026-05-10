@@ -89,10 +89,11 @@ export const searchScholarships = async (profile: UserProfile): Promise<Scholars
 
   try {
     const response = await ai.models.generateContent({
-      model: "gemini-2.0-flash",
+      model: "gemini-3-flash-preview", 
       contents: prompt,
       config: {
-        tools: [{ googleSearch: {} }],
+        // ❌ REMOVE OR COMMENT OUT THIS LINE:
+        // tools: [{ googleSearch: {} }], 
         responseMimeType: "application/json",
       }
     });
